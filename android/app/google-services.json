@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "669046747176",
+    "project_id": "markmanager-70ac1",
+    "storage_bucket": "markmanager-70ac1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669046747176:android:70d085cc6aac1f945b851d",
+        "android_client_info": {
+          "package_name": "com.example.mark_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "669046747176-d032ut8ajrclua32mpsqn29nitg72c8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdCRYo3xau21qnx1CkjVUmZ8oTxUwMwYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "669046747176-d032ut8ajrclua32mpsqn29nitg72c8r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
