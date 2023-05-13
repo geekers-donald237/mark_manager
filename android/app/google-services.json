@@ -29,6 +29,13 @@
             {
               "client_id": "669046747176-d032ut8ajrclua32mpsqn29nitg72c8r.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "669046747176-754eouo8sqo1bfgvssbmnf5uq33cggof.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.markManager"
+              }
             }
           ]
         }
