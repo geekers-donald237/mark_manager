@@ -17,9 +17,10 @@ const  LoginPage({super.key , required this.onTap});
 final TextEditingController controller = TextEditingController();
 
 Future<bool> doesDocumentExist(String documentName) async {
+
   final QuerySnapshot result = await FirebaseFirestore.instance
       .collection('etudiants')
-      .where('document_name_field', isEqualTo: documentName)
+      .where(FieldPath.documentId, isEqualTo: documentName)
       .limit(1)
       .get();
 
