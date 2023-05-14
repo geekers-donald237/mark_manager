@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'auth/logintest.dart';
 
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: LoginPage(onTap: () { },),
+      builder: EasyLoading.init(),
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../components/my_button.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../components/my_textfield.dart';
 
 
@@ -29,10 +29,19 @@ Future<bool> doesDocumentExist(String documentName) async {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
+      // appBar:
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -43,11 +52,17 @@ class _LoginPageState extends State<LoginPage> {
 
                 // welcome back, you've been missed!
                 Text(
-                  'Welcome back you\'ve been missed!',
+                  'BIENVENUE RENSEIGNER VOTRE MATRICULE \n POUR CONSULTER VOS NOTE !',
                   style: TextStyle(
                     color: Colors.grey[700],
-                    fontSize: 16,
+                    fontSize: 14,
                   ),
+                  textAlign: TextAlign.center,
+                ),
+
+                const SizedBox(height: 15),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 50.0),
                 ),
 
                 const SizedBox(height: 15),
@@ -59,160 +74,39 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: false,
                 ),
 
-                //const SizedBox(height: 10),
-
-                // password textfield
-                // MyTextField(
-                //   controller: controller,
-                //   hintText: 'Password',
-                //   obscureText: true,
-                // ),
-
-                //const SizedBox(height: 5),
-
-                // // forgot password?
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.end,
-                //     children: [
-                //       Text(
-                //         'Forgot Password?',
-                //         style: TextStyle(color: Colors.pinkAccent),
-                //       ),
-                //     ],
-                //   ),
-                // ),
 
                 const SizedBox(height: 25),
 
                 // sign in button
                 ElevatedButton(
-                  onPressed: () async {
-                    String documentName = controller.text;
-                    bool documentExists = await doesDocumentExist(documentName);
-                    if (documentExists) {
-                      AlertDialog(
-                        title: Text('ok c bon sa existe'),
-                        content: Text('oui tu existe'),
-                        actions: [
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: Text('Close'),
-                          ),
-                        ],
-                      );
-                    } else {
+                    onPressed: () async {
 
-                      AlertDialog(
-                        title: Text(' c pas bon sa'),
-                        content: Text(" tu nexiste pas"),
-                        actions: [
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                              },
-                      child: Text('Close'),
-                          ),
-                        ],
-                      );
+                      String documentName = controller.text;
+                      if(documentName.length <7 || documentName.length >7 )
+                      {
+                        EasyLoading.showError('Entrez un matricule valide');
+                      }
+                      EasyLoading.showProgress(0.3, status: 'checking...');
+                      bool documentExists = await doesDocumentExist(documentName);
 
-                      // showDialog(
-                      //   context: context,
-                      //   builder:
-                      //    title: Text(' c pas bon sa'),
-                      //   content: Text(" tu nexiste pas"),
-                      //   actions: [
-                      //     ElevatedButton(
-                      //       onPressed: () {
-                      //         Navigator.pop(context);
-                      //       },
-                      //       child: Text('Close'),
-                      //     ),
-                      //   ],
-                      //   ,
-                      // );
-                    }
-                  },
+                      // EasyLoading.showProgress(0.3, status: 'downloading...');
+                      //
+                      // EasyLoading.showSuccess('Great Success!');
+                      //
+                      // EasyLoading.showError('Failed with Error');
+
+                      if (documentExists) {
+                        EasyLoading.showSuccess('Great Success!\nTu est bien enregistrer');
+
+                      } else {
+                        EasyLoading.showError('Ce matricule n\'existe pas');
+
+                      }
+                    },
                   child: Text('Login'),
                 ),
 
-                //const SizedBox(height: 50),
 
-                // or continue with
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                //   child: Row(
-                //     children: [
-                //       Expanded(
-                //         child: Divider(
-                //           thickness: 0.5,
-                //           color: Colors.pinkAccent,
-                //         ),
-                //       ),
-                //       Padding(
-                //         padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                //         child: Text(
-                //           'Or continue with',
-                //           style: TextStyle(color: Colors.pinkAccent),
-                //         ),
-                //       ),
-                //       Expanded(
-                //         child: Divider(
-                //           thickness: 0.5,
-                //           color: Colors.pinkAccent,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                //
-                // const SizedBox(height: 30),
-
-                // google + apple sign in buttons
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children:  [
-                //     // google button
-                //     SquareTile(
-                //       onTap: () => AuthService().SignInWithGoogle(),
-                //       imagePath: 'lib/images/google.png',
-                //     ),
-                //
-                //     SizedBox(width: 25),
-                //
-                //     // apple button
-                //     SquareTile(
-                //         onTap: () => AuthService().SignInWithGoogle(),
-                //         imagePath: 'lib/images/apple.png')
-                //   ],
-                // ),
-
-                // const SizedBox(height: 20),
-
-                // not a member? register now
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     Text(
-                //       'Not a member?',
-                //       style: TextStyle(color: Colors.grey[700]),
-                //     ),
-                //     const SizedBox(width: 4),
-                //     GestureDetector(
-                //       onTap: widget.onTap,
-                //       child: const Text(
-                //         'Register now',
-                //         style: TextStyle(
-                //           color: Colors.pinkAccent,
-                //           fontWeight: FontWeight.bold,
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // )
               ],
             ),
           ),
