@@ -21,13 +21,14 @@ class SplashState extends State<Splash> {
   }
 
   _navigatetohome()async{
-    await Future.delayed(Duration(milliseconds: 1500), () {});
+    await Future.delayed(Duration(milliseconds: 2000), () {});
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginPage(onTap: () {  }),));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[50],
       body: Center(
         child: Container(
         child: Text('mark_manager\n\nSPLASH loading ...\n ',
