@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                       {
                         EasyLoading.showError('Entrez un matricule valide',duration: Duration(seconds: 3),);
                       }
-                      EasyLoading.showProgress(0.3, status: 'checking...');
+                      EasyLoading.show(status: 'checking...');
                       bool documentExists = await doesDocumentExist(documentName);
 
                       // EasyLoading.showProgress(0.3, status: 'downloading...');
