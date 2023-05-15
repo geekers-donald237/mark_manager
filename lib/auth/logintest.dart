@@ -41,7 +41,13 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      appBar: AppBar(
+        automaticallyImplyLeading: true,
+        title: Text("mark_manager",
+                    style: TextStyle(color: Colors.pinkAccent),textAlign:  TextAlign.center,
+                    ),
+      ),
+      backgroundColor: Colors.blue[50],
       // appBar:
       body: SafeArea(
         child: Center(
@@ -53,10 +59,10 @@ class _LoginPageState extends State<LoginPage> {
 
                 // welcome back, you've been missed!
                 Text(
-                  'BIENVENUE RENSEIGNER VOTRE MATRICULE \n POUR CONSULTER VOS NOTE !',
+                  'BIENVENUE \n RENSEIGNER VOTRE MATRICULE \n POUR CONSULTER VOS NOTE !',
                   style: TextStyle(
                     color: Colors.grey[700],
-                    fontSize: 14,
+                    fontSize: 18,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -85,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                       String documentName = controller.text;
                       if(documentName.length <7 || documentName.length >7 )
                       {
-                        EasyLoading.showError('Entrez un matricule valide');
+                        EasyLoading.showError('Entrez un matricule valide',duration: Duration(seconds: 3),);
                       }
                       EasyLoading.showProgress(0.3, status: 'checking...');
                       bool documentExists = await doesDocumentExist(documentName);
@@ -100,11 +106,13 @@ class _LoginPageState extends State<LoginPage> {
                         EasyLoading.showSuccess('Great Success!\nTu est bien enregistrer');
 
                       } else {
-                        EasyLoading.showError('Ce matricule n\'existe pas');
+                        EasyLoading.showError('Ce matricule n\'est pas enregistrer');
 
                       }
                     },
-                  child: Text('Login'),
+                  child: Text('Login',
+                              style: TextStyle(color: Colors.pinkAccent ),
+                          ),
                 ),
 
 
